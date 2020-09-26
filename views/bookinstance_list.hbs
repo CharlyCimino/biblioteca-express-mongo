@@ -8,7 +8,7 @@
 	<li><a href={{this.url}}>{{this.book.title}}: ({{this.imprint}})</a> - <span
 			class={{bookinstanceStyleStatus this.status}}>{{this.status}}</span>
 		{{#if (isntAvailable this.status)}}
-		<span>Due: {{this.due_back}}</span>
+		<span>Due: {{this.due_back_formatted}}</span>
 		{{/if}}
 	</li>
 
