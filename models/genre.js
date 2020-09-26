@@ -4,10 +4,7 @@ let Schema = mongoose.Schema;
 
 let GenreSchema = new Schema(
 	{
-		name: { type: String, required: true, min: 3, max: 100 },
-		family_name: { type: String, required: true, max: 100 },
-		date_of_birth: { type: Date },
-		date_of_death: { type: Date },
+		name: { type: String, required: true, min: 3, max: 100 }
 	}
 );
 

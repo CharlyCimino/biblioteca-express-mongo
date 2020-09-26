@@ -1,8 +1,8 @@
-let mongoose = require('mongoose');
+var mongoose = require('mongoose');
 
-let Schema = mongoose.Schema;
+var Schema = mongoose.Schema;
 
-let AuthorSchema = new Schema(
+var AuthorSchema = new Schema(
 	{
 		first_name: { type: String, required: true, max: 100 },
 		family_name: { type: String, required: true, max: 100 },
