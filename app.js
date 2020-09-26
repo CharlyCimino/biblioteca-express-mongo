@@ -6,6 +6,7 @@ var logger = require('morgan');
 var mongoose = require('mongoose');
 var hbs = require('hbs');
 
+
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var catalogRouter = require('./routes/catalog');  //Import routes for "catalog" area of site
@@ -16,6 +17,7 @@ var app = express();
 app.set('views', path.join(__dirname, 'views'));
 hbs.registerPartials(`${__dirname}/views/partials`);
 app.set('view engine', 'hbs');
+require('./views/helpers/helpers');
 
 app.use(logger('dev'));
 app.use(express.json());

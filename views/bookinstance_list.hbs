@@ -1,0 +1,18 @@
+{{> header}}
+
+{{> sidebar}}
+
+<h1>{{title}}</h1>
+<ul>
+	{{#each bookinstance_list}}
+	<li><a href={{this.url}}>{{this.book.title}}: ({{this.imprint}})</a> - <span
+			class={{bookinstanceStyleStatus this.status}}>{{this.status}}</span>
+		{{#if (isntAvailable this.status)}}
+		<span>Due: {{this.due_back}}</span>
+		{{/if}}
+	</li>
+
+	{{/each}}
+</ul>
+
+{{> footer}}
