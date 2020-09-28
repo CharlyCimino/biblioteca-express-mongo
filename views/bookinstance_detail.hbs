@@ -1,0 +1,20 @@
+{{> header}}
+
+{{> sidebar}}
+
+<h1>ID: {{bookinstance._id}}</h1>
+<p><strong>Title: </strong><a href={{bookinstance.book.url}}>{{bookinstance.book.title}}</a></p>
+<p><strong>Imprint: </strong>{{bookinstance.imprint}}</p>
+<p><strong>Status: </strong><span class={{bookinstanceStyleStatus bookinstance.status}}>{{bookinstance.status}}</span>
+</p>
+
+{{#if (isntAvailable bookinstance.status)}}
+<p><strong>Due back: </strong>{{bookinstance.due_back_formatted}}</p>
+{{/if}}
+<ul>
+	{{#each book_list}}
+	<li><a href={{this.url}}>{{this.title}}</a> ({{this.author.name}})</li>
+	{{/each}}
+</ul>
+
+{{> footer}}
