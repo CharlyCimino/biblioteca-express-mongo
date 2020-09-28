@@ -1,0 +1,33 @@
+{{> header}}
+
+{{> sidebar}}
+
+<h1>Genre: {{title}}</h1>
+
+<p><strong>Author: </strong><a href={{book.author.url}}>{{book.author.name}}</a></p>
+<p><strong>Summary: </strong>{{book.summary}}</p>
+<p><strong>ISBN: </strong>{{book.isbn}}</p>
+<p><strong>Genre: </strong>
+
+	{{#each book.genre}}
+	<a href={{this.url}}>{{this.name}}</a>
+	{{#if (isLastItem @index ../genres_count)}} , {{/if}}
+	{{/each}} </p>
+<div style='margin-left:20px;margin-top:20px'>
+	<h4>Copies</h4>
+	{{#if book_instances}}
+	{{#each book_instances}}
+	<hr>
+	<p class={{bookinstanceStyleStatus this.status}}>{{this.status}}</p>
+	<p><strong>Imprint: </strong>{{this.imprint}}</p>
+	{{#if (isntAvailable this.status)}}
+	<p><strong>Due back: </strong>{{this.due_back_formatted}}</p>
+	{{/if}}
+	<p><strong>ID: </strong><a href={{this.url}}>{{this._id}}</a></p>
+	{{/each}}
+	{{else}}
+	<p>There are no copies of this book in the library.</p>
+	{{/if}}
+</div>
+
+{{> footer}}

@@ -36,7 +36,6 @@ exports.book_list = function (req, res, next) {
 		.exec(function (err, list_books) {
 			if (err) { return next(err); }
 			//Successful, so render
-			console.log(list_books[0]);
 			res.render('book_list', { title: 'Book List', book_list: list_books });
 		});
 
@@ -44,8 +43,31 @@ exports.book_list = function (req, res, next) {
 
 // Display detail page for a specific book.
 exports.book_detail = function (req, res) {
-	res.send('NOT IMPLEMENTED: Book detail: ' + req.params.id);
+
+	async.parallel({
+		book: function (callback) {
+			Book.findById(req.params.id)
+				.populate('author')
+				.populate('genre')
+				.exec(callback);
+		},
+		book_instance: function (callback) {
+			BookInstance.find({ 'book': req.params.id })
+				.exec(callback);
+		},
+	}, function (err, results) {
+		if (err) { return next(err); }
+		if (results.book == null) { // No results.
+			var err = new Error('Book not found');
+			err.status = 404;
+			return next(err);
+		}
+		// Successful, so render.
+		res.render('book_detail', { title: results.book.title, book: results.book, book_instances: results.book_instance, genres_count: results.book.genre.length });
+	});
+
 };
+
 
 // Display book create form on GET.
 exports.book_create_get = function (req, res) {
