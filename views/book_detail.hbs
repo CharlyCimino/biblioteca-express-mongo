@@ -15,7 +15,6 @@
 	{{/each}} </p>
 <div style='margin-left:20px;margin-top:20px'>
 	<h4>Copies</h4>
-	{{#if book_instances}}
 	{{#each book_instances}}
 	<hr>
 	<p class={{bookinstanceStyleStatus this.status}}>{{this.status}}</p>
@@ -24,10 +23,9 @@
 	<p><strong>Due back: </strong>{{this.due_back_formatted}}</p>
 	{{/if}}
 	<p><strong>ID: </strong><a href={{this.url}}>{{this._id}}</a></p>
-	{{/each}}
 	{{else}}
 	<p>There are no copies of this book in the library.</p>
-	{{/if}}
+	{{/each}}
 </div>
 
 {{> footer}}
