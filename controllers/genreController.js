@@ -4,10 +4,9 @@ var async = require('async');
 const validator = require('express-validator');
 
 // Display list of all Genre.
-exports.genre_list = function (req, res) {
+exports.genre_list = function (req, res, next) {
 	Genre.find()
-		.populate('genre')
-		.sort([['name', 'ascending']])
+		.sort({ name: 'asc' })
 		.exec(function (err, list_genres) {
 			if (err) { return next(err); }
 			//Successful, so render

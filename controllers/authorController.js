@@ -8,8 +8,7 @@ const { sanitizeBody } = require('express-validator/filter');
 exports.author_list = function (req, res, next) {
 
 	Author.find()
-		.populate('author')
-		.sort([['family_name', 'ascending']])
+		.sort({ family_name: 'asc' })
 		.exec(function (err, list_authors) {
 			if (err) { return next(err); }
 			//Successful, so render
