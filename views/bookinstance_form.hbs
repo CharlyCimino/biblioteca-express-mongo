@@ -1,0 +1,50 @@
+{{> header}}
+
+{{> sidebar}}
+
+<h1>{{title}}</h1>
+
+<form action="" method="post">
+	<div class="form-group">
+		<label for="book">Book:</label>
+		<select type="select" id="book" name="book" class="form-control" placeholder="Select book" required='true'>
+			{{#each book_list }}
+			{{#if bookinstance}}
+			<option value={{this._id}}>{{this.title}}</option>
+			{{else}}
+			<option value={{this._id}}>{{this.title}}</option>
+			{{/if}}
+			{{/each}}
+		</select>
+	</div>
+	<div class="form-group">
+		<label for="imprint">Imprint:</label>
+		<input type="text" id="imprint" name="imprint" class="form-control" placeholder='Publisher and date information'
+			required="true"></textarea>
+	</div>
+	<div class="form-group">
+		<label for="due_back">Date when book available:</label>
+		<input type="date" id="due_back" name="due_back" class="form-control">
+	</div>
+	<div class="form-group">
+		<label for="status">Status:</label>
+		<select type="select" id="status" name="status" class="form-control" placeholder="Select status"
+			required='true'>
+			{{#each status_list }}
+			<option value={{this}}>{{this}}</option>
+			{{/each}}
+		</select>
+	</div>
+	<button class="btn btn-primary" type="submit">Submit</button>
+</form>
+
+
+{{#if errors}}
+<ul>
+	{{#each errors}}
+	<li>{{this.msg}}</li>
+	{{/each}}
+</ul>
+{{/if}}
+
+{{> footer}}
